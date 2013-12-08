@@ -3,7 +3,7 @@
 //
 
 // Uncomment to use rem-calc() in your settings
-// @import "foundation/functions";
+@import "foundation/functions";
 
 // $experimental: true;
 
@@ -19,7 +19,7 @@
 // $base-line-height: 150%;
 
 // This is the default html and body font-size for the base rem value.
-// $rem-base: 16px;
+$rem-base: 16px;
 
 // We use this to control whether or not CSS classes come through in the gem files.
 // $include-html-classes: true;
@@ -30,7 +30,7 @@
 
 // $include-html-grid-classes: $include-html-classes;
 
-// $row-width: rem-calc(1000);
+$row-width: rem-calc(1200);
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
 
@@ -481,15 +481,17 @@
 
 // Off-canvas
 
-// $tabbar-bg: #333;
-// $tabbar-height: rem-calc(45);
+$tabbar-bg: #EEE;
+$tabbar-height: rem-calc(45);
 // $tabbar-line-height: $tabbar-height;
-// $tabbar-color: #FFF;
+$tabbar-color: #FFF;
 // $tabbar-middle-padding: 0 rem-calc(10);
 
 // Off Canvas Divider Styles
-// $tabbar-right-section-border: solid 1px lighten($tabbar-bg, 10%);
-// $tabbar-left-section-border: solid 1px darken($tabbar-bg, 10%);
+//$tabbar-right-section-border: solid 1px lighten($tabbar-bg, 100%);
+//$tabbar-left-section-border: solid 1px darken($tabbar-bg, 100%);
+$tabbar-right-section-border: 0;
+$tabbar-left-section-border: 0;
 
 // Off Canvas Tab Bar Headers
 // $tabbar-header-color: #FFF;
@@ -515,8 +517,8 @@
 // $off-canvas-link-border-bottom: 1px solid darken($off-canvas-bg, 5%);
 
 // Off Canvas Menu Icon Variables
-// $tabbar-menu-icon-color: #FFF;
-// $tabbar-menu-icon-hover: darken($tabbar-menu-icon-color, 30%);
+$tabbar-menu-icon-color: #333;
+$tabbar-menu-icon-hover: darken($tabbar-menu-icon-color, 30%);
 
 // $tabbar-menu-icon-text-indent: rem-calc(35);
 // $tabbar-menu-icon-width: $tabbar-height;
