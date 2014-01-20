@@ -26,3 +26,32 @@ ul#quick-access-menu li a {
 ul#quick-access-menu.f-dropdown {
     min-width: 45%;
 }
+
+footer .top-bar {
+    background-color: #333;
+}
+
+footer div.row {
+    background-color: #444;
+    max-width: 80rem;
+    padding: 1rem;
+}
+
+div.row dl.sub-nav {
+    line-height: 0.5;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+div.row.collapse.monitoring-panel .columns {
+    min-height: 300px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+div.right-panel {
+}
+
+div.left-panel {
+  border-right: solid 1px #333;
+}
