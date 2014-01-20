@@ -1,6 +1,6 @@
 *.DS_Store
-/css/*
-/bower_components/*
-/node_modules/*
+/app/css/*
+/app/bower_components/*
+/app/node_modules/*
 /.idea/*
 .siteflow
