@@ -1,7 +1,5 @@
 # CubbyHole quick start
 
-This is a template to start your own project that uses Grunt and libsass!
-
 ## Requirements
 
 You'll need to have the following items installed before continuing.
@@ -14,7 +12,7 @@ You'll need to have the following items installed before continuing.
 
 ```bash
 git clone https://github.com/alchm/cubbyhole
-cd app/
+cd cubbyhole/app/
 npm install && bower install
 ```
 
@@ -24,7 +22,7 @@ While you're working on your project, run:
 
 And you're set!
 
-## Directory Strucutre
+## Directory Structure
 
   * `scss/_settings.scss`: Foundation configuration settings go in here
   * `scss/app.scss`: Application wrapper
