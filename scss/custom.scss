@@ -1,9 +1,28 @@
 $top-bar-color:	#80C6DC;
 
-.filezone-top-bar {
-	background-color:	$top-bar-color;
+input.rounded {
+    -webkit-appearance: none;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
 }
 
-.filezone-tab-bar-section {
-	background-color:	white;
+input.quick-access {
+    width: 250px;
+}
+
+ul#quick-access-menu {
+    background-color: #fff;
+}
+
+ul#quick-access-menu li .right {
+    color: #888;
+    margin: 0.9rem;
+}
+
+ul#quick-access-menu li a {
+    padding: 0.9rem;
+}
+
+ul#quick-access-menu.f-dropdown {
+    min-width: 45%;
 }
