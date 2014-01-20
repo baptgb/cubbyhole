@@ -1,6 +1,7 @@
 {
-  "name": "foundation-libsass-template",
+  "name": "cubbyhole",
   "dependencies": {
-    "foundation": "zurb/bower-foundation"
+    "foundation": "zurb/bower-foundation",
+    "angular": "angular/bower-angular"
   }
 }
