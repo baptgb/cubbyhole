@@ -3,73 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Filezone</title>
+    <title>CubbyHole</title>
     <link rel="stylesheet" href="css/app.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
   <body>
 
-    <nav class="top-bar filezone-top-bar" data-topbar>
+  <div class="contain-to-grid sticky">
+    <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Filezone</a></h1>
+          <h1><a href="index.html">CubbyHole</a></h1>
         </li>
+          <li class="toggle-topbar menu-icon"><a href="#"></a></li>
       </ul>
 
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
+      <section class="top-bar-section row">
+        <!--Right Nav Section -->
+
+        <ul>
+          <li class="has-form large-6 medium-6">
+                <input type="text" class="rounded" placeholder="quick access"
+                       data-dropdown="quick-access-menu" class="dropdown">
+          </li>
+          <li class="divider"></li>
+            <!--<li class="has-dropdown">
+                <a href="#">Uploading "Myfile.png" 37%</a>
+                <ul class="dropdown">
+                    <li><a href="#">Stop</a></li>
+                </ul>
+            </li>-->
+        </ul>
+
+
         <ul class="right">
-          <li class="active"><a href="#">Right Nav Button Active</a></li>
           <li class="has-dropdown">
-            <a href="#">Right Button with Dropdown</a>
+            <a href="#">Peter Griffin</a>
             <ul class="dropdown">
               <li><a href="#">First link in dropdown</a></li>
             </ul>
           </li>
         </ul>
 
-
       </section>
     </nav>
+      <ul id="quick-access-menu" class="f-dropdown" data-dropdown-content>
+          <li>
+              <a href="index.html">Dashboard</a>
+          </li>
+          <li>
+              <span class="right">35 files</span>
+              <a href="peter.griffin/my-folder.html">My folder</a>
+          </li>
+          <li>
+              <span class="right">86 files</span>
+              <a href="peter.griffin/my-project.html">My project</a>
+          </li>
+      </ul>
+  </div>
+
+  <hr>
 
     
+    <hr>
 
-        <!-- Off canvas start -->
-        <div class="off-canvas-wrap">
-          <div class="inner-wrap">
-            <nav class="tab-bar">
-
-              <section class="left tab-bar-section filezone-tab-bar-section">
-                <h1 class="title" style='color: black; font-family:"Open Sans","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif"'>My Zone</h1>
-              </section>
-
-              <section class="right-small">
-                <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
-              </section>
-            </nav>
-
-            <aside class="right-off-canvas-menu">
-              <ul class="off-canvas-list">
-                <li><label>Users</label></li>
-                <li><a href="#">Hari Seldon</a></li>
-                ...
-              </ul>
-            </aside>
-
-
-
-            <section class="main-section"> <!-- CONTENT GOES HERE -->
 
 
     <div class="row">
-      <div class="large-12 columns">
-        <table style="width:100%;">
+      <div>
+        <table class="large-12 columns">
           <thead>
             <tr>
               <th width="10">X</th>
-              <th width="50%">Name</th>
-              <th width="">Size</th>
-              <th width="">Owner</th>
+              <th width="auto">Name</th>
+              <th width="75">Size</th>
+              <th width="150">Owner</th>
             </tr>
           </thead>
           <tbody>
@@ -79,82 +87,74 @@
               </td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
             <tr>
               <td><input type="checkbox"></td>
               <td>MyFile.pdf</td>
               <td>150 kb</td>
-              <td>Baptiste Gouby</td>
+              <td><a href="dashboard.html">Baptiste Gouby</a></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
     <hr>
-
-            </section> <!-- END OF SECTION -->
-
-          <a class="exit-off-canvas"></a>
-
-          </div>
-        </div>
-      <!-- Off canvas end -->
-
 
     <footer class="top-bar" data-topbar>
   <ul class="title-area">
