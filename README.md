@@ -1,6 +1,4 @@
-# Foundation libsass template
-
-This is a template to start your own project that uses Grunt and libsass!
+# CubbyHole quick start
 
 ## Requirements
 
@@ -13,8 +11,8 @@ You'll need to have the following items installed before continuing.
 ## Quickstart
 
 ```bash
-// OLD /!\ git clone git@github.com:zurb/foundation-libsass-template.git
 git clone https://github.com/alchm/cubbyhole
+cd cubbyhole/app/
 npm install && bower install
 ```
 
@@ -24,7 +22,8 @@ While you're working on your project, run:
 
 And you're set!
 
-## Directory Strucutre
+## Directory Structure
 
   * `scss/_settings.scss`: Foundation configuration settings go in here
-  * `scss/app.scss`: Application styles go here
+  * `scss/app.scss`: Application wrapper
+  * `app/scss/custom.scss` Custom styles go here
