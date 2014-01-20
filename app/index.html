@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/app.css" />
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/chart/Chart.js"></script>
     <script src="js/app.js"></script>
@@ -110,24 +111,44 @@
 <footer>
   <div class="top-bar" data-topbar>
   </div>
-  <div class="row collapse monitoring-panel">
-      <div class="large-6 columns left-panel">
-          <h3>Notifications</h3>
-          <div class="panel panel-content callout radius">
-              <span class="right close"><i class="fa fa-times"></i></span>
-              <h5>This is a callout panel.</h5>
-              <p>It's a little ostentatious, but useful for important content.</p>
+  <div class="row collapse monitoring-panel" ng-controller="MonitorCtrl">
+
+      <div class="large-6 small-12 columns left-panel">
+          <div class="row">
+              <div class="large-12">
+                  <h3>Notifications</h3>
+              </div>
           </div>
-          <div class="panel panel-content callout radius">
+
+          <div class="panel panel-content callout radius" ng-repeat="notification in notifications">
               <span class="right close"><i class="fa fa-times"></i></span>
-              <h5>This is a callout panel.</h5>
-              <p>It's a little ostentatious, but useful for important content.</p>
+              <h5>{{ notification.title }}</h5>
+              <p>{{ notification.content }}</p>
           </div>
       </div>
-      <div class="large-6 columns right-panel">
-          <h3>Usage</h3>
-          <div class="panel-content">
-              <canvas id="usage-chart" height="200px"></canvas>
+
+      <div class="large-6 medium-12 small-12 columns right-panel">
+          <div class="row">
+              <div class="large-12">
+                  <h3>Usage</h3>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="large-6 medium-6 small-12 columns">
+                <canvas id="usage-chart" height="220px" width="220px"></canvas>
+              </div>
+              <div class="large-6 medium-6 small-12 columns text-center" style="color:#AAA;">
+                  <ul class="pricing-table">
+                      <li class="title">{{ plan.name }}</li>
+                      <li class="price">{{ plan.price }}</li>
+                      <li class="description">Expires at : {{ plan.expiresAt }}</li>
+                      <li class="bullet-item">Used space : {{ plan.usedSpace }} Gb</li>
+                      <li class="bullet-item">Available space : {{ plan.availableSpace }} Gb</li>
+                      <li class="bullet-item">Total space : {{ plan.totalSpace }} Gb</li>
+                      <li class="bullet-item"><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp; Renew</a></li>
+                  </ul>
+              </div>
           </div>
       </div>
   </div>
