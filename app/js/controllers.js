@@ -3,24 +3,30 @@ var CubbyHoleControllers = angular.module('cubbyholeControllers', []);
 // File Explorer Controller
 CubbyHoleControllers.controller('FileExplorerCtrl', function ($scope) {
     $scope.files = [
-        {   'name': 'My picture 1.png',
+        {   'name': 'My shared folder',
             'owner': 'Baptiste Gouby',
-            'size': '150 Kb'            },
+            'size': '150 Kb',
+            'type': 'folder'            },
         {   'name': 'My picture 2.png',
             'owner': 'Brian',
-            'size': '90 Kb'            },
+            'size': '90 Kb',
+            'type': 'file'            },
         {   'name': 'My picture 3.png',
             'owner': 'Brian',
-            'size': '637 Kb'            },
+            'size': '637 Kb',
+            'type': 'file'            },
         {   'name': 'My picture 4.png',
             'owner': 'Brian',
-            'size': '453 Kb'            },
+            'size': '453 Kb',
+            'type': 'file'            },
         {   'name': 'My file.pdf',
             'owner': 'Peter Griffin',
-            'size': '8 Mb'              },
+            'size': '8 Mb',
+            'type': 'file'              },
         {   'name': 'Vacations.avi',
             'owner': 'Peter Griffin',
-            'size': '874 Mb'            }
+            'size': '874 Mb',
+            'type': 'file'            }
     ];
 });
 
@@ -38,13 +44,13 @@ CubbyHoleControllers.controller('MonitorCtrl', function ($scope) {
     };
     var chartUsedSpaceColor         = "#F7464A",
         chartAvailableSpaceColor    = "#4D5360";
-    $scope.chartData = [
+    var chartData = [
         {   value: parseInt($scope.plan.usedSpace),
             color: chartUsedSpaceColor      },
         {   value: parseInt($scope.plan.availableSpace),
             color: chartAvailableSpaceColor }
     ];
-    $scope.chartOptions = {
+    var chartOptions = {
         //Boolean - Whether we should show a stroke on each segment
         segmentShowStroke : true,
         //String - The colour of each segment stroke
@@ -52,13 +58,13 @@ CubbyHoleControllers.controller('MonitorCtrl', function ($scope) {
         //Number - The width of each segment stroke
         segmentStrokeWidth : 5,
         //The percentage of the chart that we cut out of the middle.
-        percentageInnerCutout : 40,
+        percentageInnerCutout : 60,
         //Boolean - Whether we should animate the chart
         animation : true,
         //Number - Amount of animation steps
         animationSteps : 60,
         //String - Animation easing effect
-        animationEasing : "easeOutBounce",
+        animationEasing : "easeOutQuart",
         //Boolean - Whether we animate the rotation of the Doughnut
         animateRotate : true,
         //Boolean - Whether we animate scaling the Doughnut from the centre
@@ -67,15 +73,44 @@ CubbyHoleControllers.controller('MonitorCtrl', function ($scope) {
         onAnimationComplete : null
     };
     var ctx = document.getElementById('usage-chart').getContext("2d");
-    $scope.chart = new Chart(ctx).Doughnut( $scope.chartData, $scope.chartOptions);
+    $scope.chart = new Chart(ctx).Doughnut( chartData, chartOptions);
 
     // Notification module
     $scope.notifications = [
-        {   'title': 'First notification',
-            'content': 'You\'ve got a notification' },
-        {   'title': 'Second notification',
-            'content': 'You\'ve got the second notification' },
-        {   'title': 'Third notification',
-            'content': 'You\'ve got the third notification' }
+        {   'title': 'My picture 2.png',
+            'content': 'has been shared with you',
+            'type': 'info'                              },
+        {   'title': 'My_document.pdf',
+            'content': 'has not been uploaded',
+            'type': 'error'                                   },
+        {   'title': 'Myfile.png',
+            'content': 'has been successfully uploaded',
+            'type': 'success'                                   }
+    ];
+});
+
+// Top Bar Controller
+CubbyHoleControllers.controller('TopBarCtrl', function ($scope) {
+    $scope.menuItems = [
+        {   'name': 'Home',
+            'img': 'home',
+            'nbFolders': '12',
+            'nbFiles': '37',
+            'url': 'dashboard.html'},
+        {   'name': 'My project',
+            'img': 'folder',
+            'nbFolders': '3',
+            'nbFiles': '89',
+            'url': 'dashboard.html'       },
+        {   'name': 'My folder',
+            'img': 'folder',
+            'nbFolders': '1',
+            'nbFiles': '458',
+            'url': 'dashboard.html'       },
+        {   'name': 'Vacations',
+            'img': 'folder',
+            'nbFolders': '9',
+            'nbFiles': '24',
+            'url': 'dashboard.html'       }
     ];
 });

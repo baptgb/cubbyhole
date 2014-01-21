@@ -1,9 +1,6 @@
 
 $(document).ready(function(){
-    $(".close").click( function(e) {
-        console.log(e);
-        $(this).parent().fadeOut();
-    });
+
 });
 
 /* App Module */

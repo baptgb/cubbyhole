@@ -27,8 +27,17 @@ ul#quick-access-menu.f-dropdown {
     min-width: 45%;
 }
 
+ul.dropdown li {
+    //border-left: solid 1px black;
+  box-shadow: -1px 1px 5px #888888;
+}
+
 footer .top-bar {
     background-color: #333;
+}
+
+footer .side-nav {
+    color:#BBB;
 }
 
 footer div.row {
@@ -53,5 +62,13 @@ div.right-panel {
 }
 
 div.left-panel {
-  border-right: solid 1px #333;
+  //border-right: solid 1px #333;
+}
+
+div.top-bar-wrapper {
+  box-shadow: 0px 1px 7px #888888;
+}
+
+input#quick-access {
+  top: 8px;
 }

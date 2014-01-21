@@ -15,7 +15,7 @@
   </head>
   <body>
 
-  <div class="contain-to-grid sticky">
+  <div class="contain-to-grid sticky top-bar-wrapper" ng-controller="TopBarCtrl"> <!----------- Top Bar Controller -->
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -27,8 +27,8 @@
       <section class="top-bar-section row">
         <ul>
           <li class="has-form large-6 medium-6">
-                <input type="text" class="rounded" placeholder="quick access"
-                       data-dropdown="quick-access-menu" class="dropdown">
+                <input type="text" class="rounded" id="quick-access" data-dropdown="quick-access-menu"
+                       placeholder="click or press '/' to quick access" class="dropdown">
           </li>
           <li class="divider"></li>
         </ul>
@@ -38,11 +38,11 @@
           <li class="has-dropdown">
             <a href="#">Peter Griffin</a>
             <ul class="dropdown">
-              <li><a href="#">Account</a></li>
-              <li><a href="#">Friends</a></li>
-              <li><a href="#">Feedback</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Log out</a></li>
+              <li><a href="#"><i class="fa fa-user"></i>&nbsp; Account</a></li>
+              <li><a href="#"><i class="fa fa-users"></i>&nbsp; Friends</a></li>
+              <li><a href="#"><i class="fa fa-flag"></i>&nbsp; Feedback</a></li>
+              <li><a href="#"><i class="fa fa-question-circle"></i>&nbsp; Help</a></li>
+              <li><a href="#"><i class="fa fa-arrow-circle-down"></i>&nbsp; Log out</a></li>
             </ul>
           </li>
         </ul>
@@ -50,20 +50,14 @@
       </section>
     </nav>
       <ul id="quick-access-menu" class="f-dropdown" data-dropdown-content>
-          <li>
-              <a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp; Home</a>
-          </li>
-          <li>
-              <span class="right">35 files</span>
-              <a href="peter.griffin/my-folder.html"><i class="fa fa-folder"></i>&nbsp;&nbsp; My folder</a>
-          </li>
-          <li>
-              <span class="right">86 files</span>
-              <a href="peter.griffin/my-project.html"><i class="fa fa-folder"></i>&nbsp;&nbsp; My project</a>
+          <li ng-repeat="menuItem in menuItems">
+              <span class="right">{{ menuItem.nbFolders }} folders - {{ menuItem.nbFiles }} files</span>
+              <a ng-href="{{ menuItem.url }}"><i class="fa" ng-class="{'fa-home': menuItem.img=='home','fa-folder': menuItem.img=='folder'}"></i>&nbsp;&nbsp; {{ menuItem.name }}</a>
           </li>
       </ul>
   </div>
- <div ng-controller="FileExplorerCtrl">
+  <br>
+ <div ng-controller="FileExplorerCtrl">     <!------------------------------------------- File Explorer Controller -->
     <div class="row">
         <ul class="breadcrumbs">
             <li><a href="#">Home</a></li>
@@ -111,19 +105,20 @@
 <footer>
   <div class="top-bar" data-topbar>
   </div>
-  <div class="row collapse monitoring-panel" ng-controller="MonitorCtrl">
+  <div class="row collapse monitoring-panel" ng-controller="MonitorCtrl"> <!------------------- Monitor Controller -->
 
       <div class="large-6 small-12 columns left-panel">
           <div class="row">
               <div class="large-12">
                   <h3>Notifications</h3>
+                  <hr/>
               </div>
           </div>
-
-          <div class="panel panel-content callout radius" ng-repeat="notification in notifications">
-              <span class="right close"><i class="fa fa-times"></i></span>
-              <h5>{{ notification.title }}</h5>
-              <p>{{ notification.content }}</p>
+          <div ng-repeat="notification in notifications">
+              <div data-alert class="alert-box success radius text-center" ng-class="{'info': notification.type=='info', 'warning': notification.type=='error', 'success': notification.type=='success'}">
+                  <strong>{{ notification.title }}</strong> {{ notification.content }}
+                  <a href="#" class="close">&times;</a>
+              </div>
           </div>
       </div>
 
@@ -131,22 +126,22 @@
           <div class="row">
               <div class="large-12">
                   <h3>Usage</h3>
+                  <hr/>
               </div>
           </div>
 
           <div class="row">
               <div class="large-6 medium-6 small-12 columns">
-                <canvas id="usage-chart" height="220px" width="220px"></canvas>
+                <canvas id="usage-chart" height="200px" width="200px"></canvas>
               </div>
-              <div class="large-6 medium-6 small-12 columns text-center" style="color:#AAA;">
-                  <ul class="pricing-table">
-                      <li class="title">{{ plan.name }}</li>
-                      <li class="price">{{ plan.price }}</li>
-                      <li class="description">Expires at : {{ plan.expiresAt }}</li>
-                      <li class="bullet-item">Used space : {{ plan.usedSpace }} Gb</li>
-                      <li class="bullet-item">Available space : {{ plan.availableSpace }} Gb</li>
-                      <li class="bullet-item">Total space : {{ plan.totalSpace }} Gb</li>
-                      <li class="bullet-item"><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp; Renew</a></li>
+              <div class="large-6 medium-6 small-12 columns text-center">
+                  <ul class="side-nav">
+                      <li><h4>{{ plan.name }}</h4>
+                      <li>Expires at : {{ plan.expiresAt }}</li>
+                      <li>Used space : {{ plan.usedSpace }} Gb</li>
+                      <li>Available space : {{ plan.availableSpace }} Gb</li>
+                      <li>Total space : {{ plan.totalSpace }} Gb</li>
+                      <li><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp; Renew</a></li>
                   </ul>
               </div>
           </div>
