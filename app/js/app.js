@@ -1,6 +1,12 @@
 
 $(document).ready(function(){
-
+    $(document).keypress(function(e) {
+        var qa = $('#quick-access');
+        if (e.keyCode == 47 && !qa.is(":focus")) { // Slash '/'
+            e.preventDefault();
+            qa.focus();
+        }
+    });
 });
 
 /* App Module */

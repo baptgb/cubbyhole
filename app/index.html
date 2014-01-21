@@ -15,6 +15,7 @@
   </head>
   <body>
 
+
   <div class="contain-to-grid sticky top-bar-wrapper" ng-controller="TopBarCtrl"> <!----------- Top Bar Controller -->
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
@@ -28,7 +29,7 @@
         <ul>
           <li class="has-form large-6 medium-6">
                 <input type="text" class="rounded" id="quick-access" data-dropdown="quick-access-menu"
-                       placeholder="click or press '/' to quick access" class="dropdown">
+                       placeholder="click or press '/' to find" class="dropdown">
           </li>
           <li class="divider"></li>
         </ul>
@@ -54,10 +55,17 @@
               <span class="right">{{ menuItem.nbFolders }} folders - {{ menuItem.nbFiles }} files</span>
               <a ng-href="{{ menuItem.url }}"><i class="fa" ng-class="{'fa-home': menuItem.img=='home','fa-folder': menuItem.img=='folder'}"></i>&nbsp;&nbsp; {{ menuItem.name }}</a>
           </li>
+          <li class="text-center help-item">
+              <a href="#" data-reveal-id="help-modal">Help</a>
+          </li>
       </ul>
-  </div>
+</div>
+
+
   <br>
- <div ng-controller="FileExplorerCtrl">     <!------------------------------------------- File Explorer Controller -->
+
+
+<div ng-controller="FileExplorerCtrl">     <!------------------------------------------- File Explorer Controller -->
     <div class="row">
         <ul class="breadcrumbs">
             <li><a href="#">Home</a></li>
@@ -102,6 +110,8 @@
         </dl>
     </div>
 </div>
+
+
 <footer>
   <div class="top-bar" data-topbar>
   </div>
@@ -147,6 +157,14 @@
           </div>
       </div>
   </div>
+
+    <div id="help-modal" class="reveal-modal" data-reveal>
+        <h2>Quick commands list</h2>
+        <p class="lead">Lead message</p>
+        <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+
 </footer>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script>$(document).foundation();</script>

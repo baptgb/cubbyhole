@@ -1,4 +1,6 @@
 $top-bar-color:	#80C6DC;
+$hover: #EEE;
+$used-blue: #008cba;
 
 input.rounded {
     -webkit-appearance: none;
@@ -23,13 +25,21 @@ ul#quick-access-menu li a {
     padding: 0.9rem;
 }
 
+ul#quick-access-menu li.help-item {
+    background-color: #EEE;
+}
+
 ul#quick-access-menu.f-dropdown {
     min-width: 45%;
 }
 
 ul.dropdown li {
     //border-left: solid 1px black;
-  box-shadow: -1px 1px 5px #888888;
+    box-shadow: -1px 1px 5px #888888;
+}
+
+ul.breadcrumbs {
+    background-color: $hover;
 }
 
 footer .top-bar {
@@ -44,6 +54,10 @@ footer div.row {
     background-color: #555;
     max-width: 80rem;
     padding: 1rem;
+}
+
+footer {
+  border-bottom: solid 5px #333;
 }
 
 div.row dl.sub-nav {
@@ -66,9 +80,13 @@ div.left-panel {
 }
 
 div.top-bar-wrapper {
-  box-shadow: 0px 1px 7px #888888;
+    box-shadow: 0px 1px 7px #888888;
 }
 
 input#quick-access {
-  top: 8px;
+    top: 8px;
+}
+
+.monitoring-panel hr {
+    border-top: solid 1px black;
 }
