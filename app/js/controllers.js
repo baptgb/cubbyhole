@@ -1,46 +1,33 @@
 var CubbyHoleControllers = angular.module('cubbyholeControllers', []);
 
-// File Explorer Controller
-CubbyHoleControllers.controller('FileExplorerCtrl', function ($scope) {
-    $scope.files = [
-        {   'name': 'My shared folder',
-            'owner': 'Baptiste Gouby',
-            'size': '150 Kb',
-            'type': 'folder'            },
-        {   'name': 'My picture 2.png',
-            'owner': 'Brian',
-            'size': '90 Kb',
-            'type': 'file'            },
-        {   'name': 'My picture 3.png',
-            'owner': 'Brian',
-            'size': '637 Kb',
-            'type': 'file'            },
-        {   'name': 'My picture 4.png',
-            'owner': 'Brian',
-            'size': '453 Kb',
-            'type': 'file'            },
-        {   'name': 'My file.pdf',
-            'owner': 'Peter Griffin',
-            'size': '8 Mb',
-            'type': 'file'              },
-        {   'name': 'Vacations.avi',
-            'owner': 'Peter Griffin',
-            'size': '874 Mb',
-            'type': 'file'            }
-    ];
-});
+CubbyHoleControllers.controller( 'FileExplorerCtrl',
+    ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+        $http.get('js/files.json').success(function (data) {
+            $scope.files = data;
+        });
+        $scope.varFromRoute = $routeParams.var;
+        $scope.jean_etienne = 'qzeoihfq';
+    }]
+);
+
+CubbyHoleControllers.controller( 'TestCtrl',
+    ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+
+        $scope.user = $routeParams.user;
+    }]
+);
 
 // Monitor Controller
 CubbyHoleControllers.controller('MonitorCtrl', function ($scope) {
 
     // Chart module
     $scope.plan = {
-        'name'              : 'Basic Plan',
-        'price'             : '$99.99',
-        'expiresAt'         : '08/27/14',
-        'usedSpace'         : '30',
-        'availableSpace'    : '70',
-        'totalSpace'        : '100'
+        "name"              : "Basic Plan",
+        "price"             : "$99.99",
+        "expiresAt"         : "08/27/14",
+        "usedSpace"         : "30",
+        "availableSpace"    : "70",
+        "totalSpace"        : "100"
     };
     var chartUsedSpaceColor         = "#F7464A",
         chartAvailableSpaceColor    = "#4D5360";
@@ -77,40 +64,40 @@ CubbyHoleControllers.controller('MonitorCtrl', function ($scope) {
 
     // Notification module
     $scope.notifications = [
-        {   'title': 'My picture 2.png',
-            'content': 'has been shared with you',
-            'type': 'info'                              },
-        {   'title': 'My_document.pdf',
-            'content': 'has not been uploaded',
-            'type': 'error'                                   },
-        {   'title': 'Myfile.png',
-            'content': 'has been successfully uploaded',
-            'type': 'success'                                   }
+        {   "title": "My picture 2.png",
+            "content": "has been shared with you",
+            "type": "info"                              },
+        {   "title": "My_document.pdf",
+            "content": "has not been uploaded",
+            "type": "error"                                   },
+        {   "title": "Myfile.png",
+            "content": "has been successfully uploaded",
+            "type": "success"                                   }
     ];
 });
 
 // Top Bar Controller
 CubbyHoleControllers.controller('TopBarCtrl', function ($scope) {
     $scope.menuItems = [
-        {   'name': 'Home',
-            'img': 'home',
-            'nbFolders': '12',
-            'nbFiles': '37',
-            'url': 'dashboard.html'},
-        {   'name': 'My project',
-            'img': 'folder',
-            'nbFolders': '3',
-            'nbFiles': '89',
-            'url': 'dashboard.html'       },
-        {   'name': 'My folder',
-            'img': 'folder',
-            'nbFolders': '1',
-            'nbFiles': '458',
-            'url': 'dashboard.html'       },
-        {   'name': 'Vacations',
-            'img': 'folder',
-            'nbFolders': '9',
-            'nbFiles': '24',
-            'url': 'dashboard.html'       }
+        {   "name": "Home",
+            "img": "home",
+            "nbFolders": "12",
+            "nbFiles": "37",
+            "url": "dashboard.html"},
+        {   "name": "My project",
+            "img": "folder",
+            "nbFolders": "3",
+            "nbFiles": "89",
+            "url": "dashboard.html"       },
+        {   "name": "My folder",
+            "img": "folder",
+            "nbFolders": "1",
+            "nbFiles": "458",
+            "url": "dashboard.html"       },
+        {   "name": "Vacations",
+            "img": "folder",
+            "nbFolders": "9",
+            "nbFiles": "24",
+            "url": "dashboard.html"       }
     ];
 });

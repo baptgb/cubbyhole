@@ -19,15 +19,11 @@ var CubbyHoleApp = angular.module('cubbyholeApp', [
 CubbyHoleApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/', {
+            when('/toto/:var',{
                 templateUrl: 'partials/fileExplorer.html',
                 controller: 'FileExplorerCtrl'
             }).
-            when('/{username}', {
-                templateUrl: 'partials/.html',
-                controller: 'PhoneDetailCtrl'
-            }).
             otherwise({
-                redirectTo: '/'
+                redirectTo: '/toto/tutu'
             });
     }]);
