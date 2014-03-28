@@ -4,8 +4,6 @@ parameters:
     database_host: 127.0.0.1
     database_port: 3306
     database_name: cubbyhole_api
-#    database_user: cubbyhole
-#    database_password: vfquDaSuGWhSncjc
     database_user: root
     database_password: root
     mailer_transport: smtp
