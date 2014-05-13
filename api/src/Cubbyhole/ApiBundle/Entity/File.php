@@ -6,7 +6,7 @@
  * Time: 6:41 PM
  */
 
-/*namespace Cubbyhole\ApiBundle\Entity;
+namespace Cubbyhole\ApiBundle\Entity;
 
 
 class File implements FileInterface {
@@ -18,30 +18,49 @@ class File implements FileInterface {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    //private $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    //private $name;
+    private $name;
 
     // TODO:find how to save the data (format, file sys methods and implementation, etc...
-    //private $data;
+    private $data;
 
     /**
      *
      * @ORM\ManyToOne(targetEntity="Cubbyhole\ApiBundle\Entity\User", inversedBy="files")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    /*private $owner;
+    private $owner;
 
+    /**
+     * @var integer (kilo-octets 1G GB = 1000000 KO)
+     *
+     * @ORM\Column(name="size", type="integer", length=12)
+     */
     private $size;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $creation;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $modification;
 
     private $readOnlyUsers = Array();
 
-    private $adminUsers = Array();
+    private $readWriteUsers = Array();
 
     public function getId()
     {
@@ -63,14 +82,26 @@ class File implements FileInterface {
         return $this->owner;
     }
 
+    public function getSize() {
+        return $this->size;
+    }
+
+    public function getCreation() {
+        return $this->creation;
+    }
+
+    public function getModification() {
+        return $this->modification;
+    }
+
     public function getReadOnlyUsers()
     {
         return $this->readOnlyUsers;
     }
 
-    public function getAdminUsers()
+    public function getReadWriteUsers()
     {
-        return $this->adminUsers;
+        return $this->readWriteUsers;
     }
 
     public function setName($name)
@@ -90,6 +121,21 @@ class File implements FileInterface {
         return $this;
     }
 
+    public function setSize($size) {
+        $this->size = $size;
+        return $this;
+    }
+
+    public function setCreation($creation) {
+        $this->creation = $creation;
+        return $this;
+    }
+
+    public function setmodification($modification) {
+        $this->modification = $modification;
+        return $this;
+    }
+
     public function addReadOnlyUser(User $user)
     {
         $this->readOnlyUsers[] = $user->getId();
@@ -105,19 +151,19 @@ class File implements FileInterface {
         }
     }
 
-    public function addAdminUser(User $user)
+    public function addReadWriteUser(User $user)
     {
-        $this->adminUsers[] = $user->getId();
+        $this->readWriteUsers[] = $user->getId();
         return $this;
     }
 
-    public function removeAdminUser(User $user)
+    public function removeReadWriteUser(User $user)
     {
-        if ($key = array_search($user->getId(), $this->adminUsers)) {
-            unset($this->adminUsers[$key]);
+        if ($key = array_search($user->getId(), $this->readWriteUsers)) {
+            unset($this->readWriteUsers[$key]);
             return true;
         } else {
             return false;
         }
     }
-}*/
+}

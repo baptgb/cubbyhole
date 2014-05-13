@@ -19,7 +19,7 @@ interface FileInterface {
     public function getCreation();
     public function getModification();
     public function getReadOnlyUsers();
-    public function getAdminUsers();
+    public function getReadWriteUsers();
     public function setName($name);
     public function setData($data);
     public function setOwner(User $user);
@@ -28,7 +28,7 @@ interface FileInterface {
     public function setModification($modification);
     public function addReadOnlyUser(User $user);
     public function removeReadOnlyUser(User $user);
-    public function addAdminUser(User $user);
-    public function removeAdminUser(User $user);
+    public function addReadWriteUser(User $user);
+    public function removeReadWriteUser(User $user);
 
 } 
