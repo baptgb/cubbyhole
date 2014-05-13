@@ -1,8 +1,11 @@
 
 $(document).ready(function(){
-    $(".close").click( function(e) {
-        console.log(e);
-        $(this).parent().fadeOut();
+    $(document).keypress(function(e) {
+        var qa = $('#quick-access');
+        if (e.keyCode == 47 && !qa.is(":focus")) { // Slash '/'
+            e.preventDefault();
+            qa.focus();
+        }
     });
 });
 
@@ -10,21 +13,27 @@ $(document).ready(function(){
 
 var CubbyHoleApp = angular.module('cubbyholeApp', [
     'ngRoute',
-    'cubbyholeControllers'
+    'cubbyholeControllers',
+    'cubbyholeServices'
 ]);
 
 CubbyHoleApp.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider.
-            when('/', {
+        $routeProvider
+            .when('/',{
                 templateUrl: 'partials/fileExplorer.html',
                 controller: 'FileExplorerCtrl'
-            }).
-            when('/{username}', {
-                templateUrl: 'partials/.html',
-                controller: 'PhoneDetailCtrl'
-            }).
-            otherwise({
+            })
+            .when('/:userId',{
+                templateUrl: 'partials/userProfile.html',
+                controller: 'UserProfileCtrl'
+            })
+            .otherwise({
                 redirectTo: '/'
             });
-    }]);
+    }
+]);
+
+CubbyHoleApp.run(function(authService) {
+    authService.start()
+});

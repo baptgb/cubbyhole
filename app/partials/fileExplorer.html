@@ -1,1 +1,44 @@
-<p>FILE EXPLORER</p>
+<div ng-controller="FileExplorerCtrl">     <!------------------------------------------- File Explorer Controller -->
+    <div class="row">
+        <ul class="breadcrumbs">
+            <li><a href="#">Home</a></li>
+            <li class="current"><a href="#">My folder</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <dl class="sub-nav">
+            <dd><a href="#"><i class="fa fa-share"></i> Share</a></dd>
+            <dd><a href="#"><i class="fa fa-copy"></i> Copy</a></dd>
+            <dd><a href="#"><i class="fa fa-folder-open"></i> Move</a></dd>
+            <dd><a href="#"><i class="fa fa-trash-o"></i> Delete</a></dd>
+        </dl>
+    </div>
+    <div class="row">
+        <table class="large-12 small-12">
+            <thead>
+                <tr>
+                    <th width="10"></th>
+                    <th width="auto">Name</th>
+                    <th width="75">Size</th>
+                    <th width="150">Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="file in files">
+                    <td><input type="checkbox"></td>
+                    <td>{{ file.name }}</td>
+                    <td>{{ file.size }}</td>
+                    <td><a href="dashboard.html">{{ file.owner }}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <dl class="sub-nav">
+            <dd><a href="#"><i class="fa fa-share"></i> Share</a></dd>
+            <dd><a href="#"><i class="fa fa-copy"></i> Copy</a></dd>
+            <dd><a href="#"><i class="fa fa-folder-open"></i> Move</a></dd>
+            <dd><a href="#"><i class="fa fa-trash-o"></i> Delete</a></dd>
+        </dl>
+    </div>
+</div>

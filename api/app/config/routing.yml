@@ -1,0 +1,4 @@
+cubbyhole_api:
+    type:     rest
+    prefix:   /api
+    resource: "@CubbyholeApiBundle/Resources/config/routes.yml"

@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CubbyHole</title>
     <link rel="stylesheet" href="css/app.css" />
-    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/chart/Chart.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/factories.js"></script>
   </head>
   <body>
 
-  <div class="contain-to-grid sticky">
+
+  <div class="contain-to-grid sticky top-bar-wrapper" ng-controller="TopBarCtrl"> <!----------- Top Bar Controller -->
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -27,8 +32,8 @@
       <section class="top-bar-section row">
         <ul>
           <li class="has-form large-6 medium-6">
-                <input type="text" class="rounded" placeholder="quick access"
-                       data-dropdown="quick-access-menu" class="dropdown">
+                <input type="text" class="rounded" id="quick-access" data-dropdown="quick-access-menu"
+                       placeholder="click or press '/' to find" class="dropdown">
           </li>
           <li class="divider"></li>
         </ul>
@@ -38,11 +43,11 @@
           <li class="has-dropdown">
             <a href="#">Peter Griffin</a>
             <ul class="dropdown">
-              <li><a href="#">Account</a></li>
-              <li><a href="#">Friends</a></li>
-              <li><a href="#">Feedback</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Log out</a></li>
+              <li><a href="#"><i class="fa fa-user"></i>&nbsp; Account</a></li>
+              <li><a href="#"><i class="fa fa-users"></i>&nbsp; Friends</a></li>
+              <li><a href="#"><i class="fa fa-flag"></i>&nbsp; Feedback</a></li>
+              <li><a href="#"><i class="fa fa-question-circle"></i>&nbsp; Help</a></li>
+              <li><a href="#"><i class="fa fa-arrow-circle-down"></i>&nbsp; Log out</a></li>
             </ul>
           </li>
         </ul>
@@ -50,83 +55,76 @@
       </section>
     </nav>
       <ul id="quick-access-menu" class="f-dropdown" data-dropdown-content>
-          <li>
-              <a href="index.html"><i class="fa fa-home"></i>&nbsp;&nbsp; Home</a>
+          <li ng-repeat="menuItem in menuItems">
+              <span class="right">{{ menuItem.nbFolders }} folders - {{ menuItem.nbFiles }} files</span>
+              <a ng-href="{{ menuItem.url }}"><i class="fa" ng-class="{'fa-home': menuItem.img=='home','fa-folder': menuItem.img=='folder'}"></i>&nbsp;&nbsp; {{ menuItem.name }}</a>
           </li>
-          <li>
-              <span class="right">35 files</span>
-              <a href="peter.griffin/my-folder.html"><i class="fa fa-folder"></i>&nbsp;&nbsp; My folder</a>
-          </li>
-          <li>
-              <span class="right">86 files</span>
-              <a href="peter.griffin/my-project.html"><i class="fa fa-folder"></i>&nbsp;&nbsp; My project</a>
+          <li class="text-center help-item">
+              <a href="#" data-reveal-id="help-modal">Help</a>
           </li>
       </ul>
-  </div>
- <div ng-controller="FileExplorerCtrl">
-    <div class="row">
-        <ul class="breadcrumbs">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">My work</a></li>
-            <li class="current"><a href="#">My folder</a></li>
-        </ul>
-    </div>
-    <div class="row">
-        <dl class="sub-nav">
-            <dd><a href="#"><i class="fa fa-share"></i> Share</a></dd>
-            <dd><a href="#"><i class="fa fa-copy"></i> Copy</a></dd>
-            <dd><a href="#"><i class="fa fa-folder-open"></i> Move</a></dd>
-            <dd><a href="#"><i class="fa fa-trash-o"></i> Delete</a></dd>
-        </dl>
-    </div>
-    <div class="row">
-        <table class="large-12 small-12">
-          <thead>
-            <tr>
-              <th width="10"></th>
-              <th width="auto">Name</th>
-              <th width="75">Size</th>
-              <th width="150">Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="file in files">
-              <td><input type="checkbox"></td>
-              <td>{{ file.name }}</td>
-              <td>{{ file.size }}</td>
-              <td><a href="dashboard.html">{{ file.owner }}</a></td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <dl class="sub-nav">
-            <dd><a href="#"><i class="fa fa-share"></i> Share</a></dd>
-            <dd><a href="#"><i class="fa fa-copy"></i> Copy</a></dd>
-            <dd><a href="#"><i class="fa fa-folder-open"></i> Move</a></dd>
-            <dd><a href="#"><i class="fa fa-trash-o"></i> Delete</a></dd>
-        </dl>
-    </div>
 </div>
+
+
+  <br>
+
+
+    <div ng-view></div>
+
+
 <footer>
   <div class="top-bar" data-topbar>
   </div>
-  <div class="row collapse monitoring-panel" ng-controller="MonitorCtrl">
-      <div class="large-6 columns left-panel">
-          <h3>Notifications</h3>
-          <div class="panel panel-content callout radius" ng-repeat="notification in notifications">
-              <span class="right close"><i class="fa fa-times"></i></span>
-              <h5>{{ notification.title }}</h5>
-              <p>{{ notification.content }}</p>
+  <div class="row collapse monitoring-panel" ng-controller="MonitorCtrl"> <!------------------- Monitor Controller -->
+
+      <div class="large-6 small-12 columns left-panel">
+          <div class="row">
+              <div class="large-12">
+                  <h3>Notifications</h3>
+                  <hr/>
+              </div>
+          </div>
+          <div ng-repeat="notification in notifications">
+              <div data-alert class="alert-box success radius text-center" ng-class="{'info': notification.type=='info', 'warning': notification.type=='error', 'success': notification.type=='success'}">
+                  <strong>{{ notification.title }}</strong> {{ notification.content }}
+                  <a href="#" class="close">&times;</a>
+              </div>
           </div>
       </div>
-      <div class="large-6 columns right-panel">
-          <h3>Usage</h3>
-          <div class="panel-content">
-              <canvas id="usage-chart" height="200px"></canvas>
+
+      <div class="large-6 medium-12 small-12 columns right-panel">
+          <div class="row">
+              <div class="large-12">
+                  <h3>Usage</h3>
+                  <hr/>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="large-6 medium-6 small-12 columns">
+                <canvas id="usage-chart" height="200px" width="200px"></canvas>
+              </div>
+              <div class="large-6 medium-6 small-12 columns text-center">
+                  <ul class="side-nav">
+                      <li><h4>{{ plan.name }}</h4>
+                      <li>Expires at : {{ plan.expiresAt }}</li>
+                      <li>Used space : {{ plan.usedSpace }} Gb</li>
+                      <li>Available space : {{ plan.availableSpace }} Gb</li>
+                      <li>Total space : {{ plan.totalSpace }} Gb</li>
+                      <li><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp; Renew</a></li>
+                  </ul>
+              </div>
           </div>
       </div>
   </div>
+
+    <div id="help-modal" class="reveal-modal" data-reveal>
+        <h2>Quick commands list</h2>
+        <p class="lead">Lead message</p>
+        <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+
 </footer>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script>$(document).foundation();</script>
