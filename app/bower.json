@@ -4,6 +4,8 @@
     "foundation": "zurb/bower-foundation",
     "angular": "angular/bower-angular",
     "angular-route": "angular/bower-angular-route",
+    "angular-resource": "angular/bower-angular-resource",
+    "crypto-js": "buttercoin/crypto-js",
     "chart": "nnnick/Chart.js"
   }
 }

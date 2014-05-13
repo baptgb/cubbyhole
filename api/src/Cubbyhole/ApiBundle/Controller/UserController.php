@@ -24,10 +24,14 @@ class UserController extends FOSRestController {
     public function getUserAction($id) {
 
 
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $user = $repository = $em->getRepository('CubbyholeApiBundle:User')->find($id);
 
-        $user = $this->container->get('doctrine.orm.entity_manager')->getRepository('CubbyholeApiBundle:User')->find($id);
+        if ($user) {
 
-        return $user;
+            return $user;
+
+        } else return new Response("User not found", 404);
 
     }
 
@@ -37,9 +41,15 @@ class UserController extends FOSRestController {
      */
     public function getUsersAction() {
 
-        $users = $this->container->get('doctrine.orm.entity_manager')->getRepository('CubbyholeApiBundle:User')->findAll();
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        return $users;
+        $users = $em->getRepository('CubbyholeApiBundle:User')->findAll();
+
+        if ($users) {
+
+            return $users;
+
+        } else return new Response("No user found", 404);
 
     }
 
@@ -48,6 +58,7 @@ class UserController extends FOSRestController {
      * @api-param username
      * @api-param email
      * @api-param password
+     * @api-param-example {"username":"MyUser", "password": "MyPwd", "email": "MyEmail" }
      * @View()
      */
     public function postUserAction(Request $request)
@@ -63,21 +74,24 @@ class UserController extends FOSRestController {
 
                 $em = $this->container->get('doctrine.orm.entity_manager');
 
+                $basicPlan = $em->getRepository('CubbyholeApiBundle:Plan')->find(1);
+
                 $user = new User();
                 $user->setUsername($params["username"])
                     ->setEmail($params["email"])
-                    ->setPassword(sha1($params['password']));
+                    ->setPassword(sha1($params['password']))
+                    ->setPlan($basicPlan);
 
-                $em->persist();
+                $em->persist($user);
                 $em->flush();
 
                 return new Response("User created", 201);
 
             } catch (\Exception $e) {
-                return new Response("Something went wrong", 501);
+                return new Response("Something went wrong", 500);
             }
 
-        } else return new Response("Bad parameters", 401);
+        } else return new Response("Bad parameters", 404);
     }
 
     /**
@@ -106,11 +120,43 @@ class UserController extends FOSRestController {
             if (array_key_exists("email", $params))      $user->setEmail($params["email"]);
             if (array_key_exists("password", $params))   $user->setPassword($params["password"]);
 
-            $em->flush();
+            try {
 
-            return new Response("User updated", 201);
+                $em->flush();
 
-        } else return new Response("User not found", 401);
+            } catch (\Exception $e) {
+                return new Response("Something went wrong", 500);
+            }
+
+            return new Response("User updated", 200);
+
+        } else return new Response("User not found", 404);
+
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     */
+    public function deleteUserAction($id) {
+
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $user = $em->getRepository('CubbyholeApiBundle:User')->find($id);
+
+        if ($user) {
+
+            try {
+
+                $em->remove($user);
+                $em->flush();
+
+            } catch (\Exception $e) {
+                return new Response("Something went wrong", 500);
+            }
+
+            return new Response("User deleted", 200);
+
+        } else return new Response("User not found", 404);
 
     }
 

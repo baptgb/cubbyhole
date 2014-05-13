@@ -56,6 +56,15 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Cubbyhole\ApiBundle\Entity\Plan", inversedBy="users")
+     * @ORM\JoinColumn(name="plan_id", referencedColumnName="id")
+     */
+    private $plan;
+
+    
+
 
     /**
      * Get id
@@ -181,4 +190,29 @@ class User implements UserInterface
     {
         return $this->password;
     }
+
+    /**
+     * Set plan
+     *
+     * @param Plan $plan
+     * @return User
+     */
+    public function setPlan(Plan $plan) {
+
+        $this->plan = $plan;
+        return $this;
+
+    }
+
+    /**
+     * Get plan
+     *
+     * @return Plan
+     */
+    public function getPlan() {
+
+        return $this->plan;
+
+    }
+
 }

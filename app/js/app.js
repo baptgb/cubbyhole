@@ -13,17 +13,27 @@ $(document).ready(function(){
 
 var CubbyHoleApp = angular.module('cubbyholeApp', [
     'ngRoute',
-    'cubbyholeControllers'
+    'cubbyholeControllers',
+    'cubbyholeServices'
 ]);
 
 CubbyHoleApp.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider.
-            when('/toto/:var',{
+        $routeProvider
+            .when('/',{
                 templateUrl: 'partials/fileExplorer.html',
                 controller: 'FileExplorerCtrl'
-            }).
-            otherwise({
-                redirectTo: '/toto/tutu'
+            })
+            .when('/:userId',{
+                templateUrl: 'partials/userProfile.html',
+                controller: 'UserProfileCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
             });
-    }]);
+    }
+]);
+
+CubbyHoleApp.run(function(authService) {
+    authService.start()
+});

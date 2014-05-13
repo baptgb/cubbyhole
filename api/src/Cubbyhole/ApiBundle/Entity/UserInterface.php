@@ -17,10 +17,12 @@ interface UserInterface {
     public function getUsername();
     public function getEmail();
     public function getPassword();
+    public function getPlan();
     public function setFirstname($firstname);
     public function setLastname($lastname);
     public function setUsername($username);
     public function setEmail($email);
     public function setPassword($password);
+    public function setPlan(Plan $plan);
 
 } 
