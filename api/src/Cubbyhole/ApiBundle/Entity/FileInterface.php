@@ -20,15 +20,13 @@ interface FileInterface {
     public function getModification();
     public function getReadOnlyUsers();
     public function getReadWriteUsers();
+    public function getDirectory();
     public function setName($name);
     public function setData($data);
     public function setOwner(User $user);
     public function setSize($size);
     public function setCreation($creationDate);
     public function setModification($modification);
-    public function addReadOnlyUser(User $user);
-    public function removeReadOnlyUser(User $user);
-    public function addReadWriteUser(User $user);
-    public function removeReadWriteUser(User $user);
+    public function setDirectory($directory);
 
 } 

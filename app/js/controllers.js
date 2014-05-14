@@ -10,8 +10,8 @@ CubbyHoleControllers.controller( 'FileExplorerCtrl',
 );
 
 CubbyHoleControllers.controller( 'UserProfileCtrl',
-    ['$scope', 'userFactory', '$routeParams', function ($scope, userFactory, $routeParams) {
-        var user = userFactory.getUser($routeParams.userId);
+    ['$scope', 'Users', '$routeParams', function ($scope, Users, $routeParams) {
+        var user = Users.get({id: $routeParams.userId});
         $scope.user = user;
     }]
 );

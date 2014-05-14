@@ -18,6 +18,7 @@ interface UserInterface {
     public function getEmail();
     public function getPassword();
     public function getPlan();
+    public function getDirectories();
     public function setFirstname($firstname);
     public function setLastname($lastname);
     public function setUsername($username);

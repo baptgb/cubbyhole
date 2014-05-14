@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table()
+ * @ORM\Table(name="Users")
  * @ORM\Entity
  */
 class User implements UserInterface
@@ -61,9 +61,31 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="Cubbyhole\ApiBundle\Entity\Plan", inversedBy="users")
      * @ORM\JoinColumn(name="plan_id", referencedColumnName="id")
      */
-    private $plan;
+    private $plan; // OK
 
-    
+    /**
+     * @var User
+     *
+     * @ORM\OneToMany(targetEntity="Cubbyhole\ApiBundle\Entity\Directory", mappedBy="owner")
+     */
+    private $directories; // OK TODO: see how to implement the array and add and remove methods
+
+    /**
+     * @var User
+     *
+     * @ORM\OneToMany(targetEntity="Cubbyhole\ApiBundle\Entity\File", mappedBy="owner")
+     */
+    private $files;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cubbyhole\ApiBundle\Entity\File", mappedBy="readOnlyUsers")
+     */
+    private $readOnlyFiles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cubbyhole\ApiBundle\Entity\File", mappedBy="readWriteUsers")
+     */
+    private $readWriteFiles;
 
 
     /**
@@ -212,6 +234,17 @@ class User implements UserInterface
     public function getPlan() {
 
         return $this->plan;
+
+    }
+
+    /**
+     * Get plan
+     *
+     * @return Plan
+     */
+    public function getDirectories() {
+
+        return $this->directories;
 
     }
 

@@ -8,7 +8,14 @@
 
 namespace Cubbyhole\ApiBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * File
+ *
+ * @ORM\Table(name="Files")
+ * @ORM\Entity
+ */
 class File implements FileInterface {
 
     /**
@@ -58,9 +65,29 @@ class File implements FileInterface {
      */
     private $modification;
 
-    private $readOnlyUsers = Array();
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Cubbyhole\ApiBundle\Entity\Directory", inversedBy="files")
+     * @ORM\JoinColumn(name="directory_id", referencedColumnName="id")
+     */
+    private $directory; // OK
 
-    private $readWriteUsers = Array();
+    /**
+     * @ORM\ManyToMany(targetEntity="Cubbyhole\ApiBundle\Entity\User", inversedBy="readOnlyFiles")
+     * @ORM\JoinTable(name="files_read_only_users")
+     */
+    private $readOnlyUsers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Cubbyhole\ApiBundle\Entity\User", inversedBy="readWriteFiles")
+     * @ORM\JoinTable(name="files_read_write_users")
+     */
+    private $readWriteUsers;
+
+    public function __construct() {
+        $this->readOnlyUsers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->readWriteUsers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId()
     {
@@ -104,6 +131,11 @@ class File implements FileInterface {
         return $this->readWriteUsers;
     }
 
+    public function getDirectory()
+    {
+        return $this->directory;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
@@ -131,39 +163,16 @@ class File implements FileInterface {
         return $this;
     }
 
-    public function setmodification($modification) {
+    public function setModification($modification) {
         $this->modification = $modification;
         return $this;
     }
 
-    public function addReadOnlyUser(User $user)
+    // add and remove readOnlyUsers and readWriteUsers go in here
+
+    public function setDirectory($directory)
     {
-        $this->readOnlyUsers[] = $user->getId();
+        $this->directory = $directory;
         return $this;
-    }
-
-    public function removeReadOnlyUser(User $user)
-    {
-        if ($key = array_search($user->getId(), $this->readOnlyUsers)) {
-            unset($this->readOnlyUsers[$key]);
-        } else {
-            return false;
-        }
-    }
-
-    public function addReadWriteUser(User $user)
-    {
-        $this->readWriteUsers[] = $user->getId();
-        return $this;
-    }
-
-    public function removeReadWriteUser(User $user)
-    {
-        if ($key = array_search($user->getId(), $this->readWriteUsers)) {
-            unset($this->readWriteUsers[$key]);
-            return true;
-        } else {
-            return false;
-        }
     }
 }

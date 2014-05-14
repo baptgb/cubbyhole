@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Plan
  *
- * @ORM\Table()
+ * @ORM\Table(name="Plans")
  * @ORM\Entity
  */
 class Plan implements PlanInterface {
@@ -60,7 +60,7 @@ class Plan implements PlanInterface {
      *
      * @ORM\OneToMany(targetEntity="Cubbyhole\ApiBundle\Entity\User", mappedBy="plan")
      */
-    private $users;
+    private $users; // OK
 
     /**
      * Get id

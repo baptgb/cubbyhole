@@ -10,8 +10,10 @@ CubbyHoleServices.service('authService', function($http) {
     The token is available via getToken method
     TODO: Secure the cookie
      */
+    var apiToken;
+
     this.start = function() {
-        var apiToken = $.cookie('cubbyholeapitoken'); // Get the token from cookie
+        apiToken = $.cookie('cubbyholeapitoken'); // Get the token from cookie
             if (apiToken !== undefined) {
                 $http.defaults.headers.common.Authorization = apiToken; // Sets the token as a common header
             }
