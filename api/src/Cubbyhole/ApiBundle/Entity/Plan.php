@@ -13,7 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Plan
  *
- * @ORM\Table(name="Plans")
+ * @ORM\Table(
+ *      name="Plans",
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="plan_unique",columns={
+ *              "name"
+ *          })
+ *      }
+ * )
  * @ORM\Entity
  */
 class Plan implements PlanInterface {

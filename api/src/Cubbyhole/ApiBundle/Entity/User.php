@@ -7,7 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="Users")
+ * @ORM\Table(
+ *      name="Users",
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="user_unique",columns={
+ *              "username",
+ *              "email"
+ *          })
+ *      }
+ * )
  * @ORM\Entity
  */
 class User implements UserInterface
